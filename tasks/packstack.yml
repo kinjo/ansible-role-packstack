@@ -1,0 +1,23 @@
+---
+- name: run yum update
+  yum: name=*
+
+- name: set RDO repository
+  yum: name=https://rdo.fedorapeople.org/openstack-icehouse/rdo-release-icehouse.rpm
+
+- name: install Packstack
+  yum: name=openstack-packstack
+
+- name: set answer-file
+  template: src=answer.txt dest=/root/answer.txt
+
+- name: check if openstack-nova-compute is already installed
+  shell: rpm -q openstack-nova-compute
+  ignore_errors: yes
+  register: st
+
+- name: run packstack if openstack-nova-compute is not installed
+  shell: 
+    packstack --answer-file=/root/answer.txt;
+    yum install -y sshpass
+  when: st | failed

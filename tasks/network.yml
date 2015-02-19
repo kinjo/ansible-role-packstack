@@ -1,0 +1,30 @@
+---
+- name: set /etc/sysconfig/network to enable VLAN
+  template: src=network dest=/etc/sysconfig/network
+  notify:
+    - reboot host
+    - wait until host is rebooted
+
+- name: set /etc/sysconfig/network-scripts/ifcfg-br-ex
+  template: src=ifcfg-br-ex dest=/etc/sysconfig/network-scripts/ifcfg-br-ex
+  notify:
+    - reboot host
+    - wait until host is rebooted
+
+- name: set /etc/sysconfig/network-scripts/ifcfg-eth1
+  template: src=ifcfg-eth1 dest=/etc/sysconfig/network-scripts/ifcfg-eth1
+  notify:
+    - reboot host
+    - wait until host is rebooted
+
+- name: set /etc/nova/nova.conf
+  template: src=nova.conf dest=/etc/nova/nova.conf
+  notify:
+    - reboot host
+    - wait until host is rebooted
+
+- name: set /etc/neutron/plugin.ini
+  template: src=plugin.ini dest=/etc/neutron/plugin.ini
+  notify:
+    - reboot host
+    - wait until host is rebooted

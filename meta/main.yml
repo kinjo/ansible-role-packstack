@@ -1,0 +1,15 @@
+---
+galaxy_info:
+  author: Takumi KINJO
+  description: Install OpenStack by Packstack
+  license: MIT
+  min_ansible_version: 1.8.2
+  platforms:
+  - name: EL
+    versions:
+    - 6
+  categories:
+  - cloud
+  - development
+  - system
+dependencies: []

@@ -1,0 +1,10 @@
+---
+# defaults file for packstack
+keystone:
+  admin_token: 9209b42c90234c36bde1f6f329ad3ae5
+  admin_user_password: password
+  demo_user_password: password
+
+br_ex_ipaddr: "{{ ansible_ssh_host }}"
+br_ex_netmask: 255.255.255.0
+provision_demo_floatrange: 192.168.33.0/24
